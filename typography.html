@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-2. 타이포그래피 - 디자인 백과사전</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <style>
+        :root {
+            --primary: #3d5afe;
+            --text-dark: #111111;
+            --text-body: #444444;
+            --text-muted: #767676;
+            --bg-main: #ffffff;
+            --bg-sub: #f8fafc;
+            --border: #e2e8f0;
+            --point-red: #df2222;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: "Pretendard Variable", sans-serif; 
+            line-height: 1.6; 
+            color: var(--text-dark); 
+            background: var(--bg-main);
+            display: flex;
+        }
+
+        /* 레이아웃 */
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            background: var(--bg-sub);
+            border-right: 1px solid var(--border);
+            padding: 40px 24px;
+            position: fixed;
+        }
+
+        .main-content {
+            margin-left: 300px;
+            padding: 80px 100px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* 목차 스타일 */
+        .side-menu-title { font-weight: 800; font-size: 18px; margin-bottom: 24px; color: var(--primary); }
+        .side-menu-list { list-style: none; }
+        .side-menu-list li { margin-bottom: 12px; }
+        .side-menu-list a { text-decoration: none; color: var(--text-muted); font-size: 14px; transition: 0.2s; }
+        .side-menu-list a:hover, .side-menu-list a.active { color: var(--text-dark); font-weight: 700; }
+
+        /* 본문 공통 스타일 */
+        h1 { font-size: 42px; font-weight: 900; margin-bottom: 40px; letter-spacing: -0.04em; }
+        section { margin-bottom: 80px; scroll-margin-top: 40px; }
+        h2 { font-size: 26px; font-weight: 800; margin-bottom: 24px; border-bottom: 2px solid var(--text-dark); padding-bottom: 12px; }
+        h3 { font-size: 18px; font-weight: 700; margin: 30px 0 15px 0; color: var(--primary); }
+        p { margin-bottom: 16px; font-size: 16px; color: var(--text-body); }
+        
+        .tip-box { background: #f1f5f9; padding: 20px; border-radius: 8px; margin: 20px 0; font-size: 15px; border-left: 4px solid var(--primary); }
+
+        /* 디자인 예시 시각화 도구 */
+        .demo-card { border: 1px solid var(--border); border-radius: 12px; padding: 30px; margin-top: 20px; background: white; }
+        .label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; display: block; }
+        
+        /* 2-3 타이포 스케일 */
+        .type-scale-item { display: flex; align-items: baseline; margin-bottom: 16px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; }
+        .type-scale-size { width: 80px; font-size: 12px; color: var(--primary); font-weight: bold; }
+        
+        /* 2-5 행간 비교 */
+        .lh-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .lh-box { padding: 15px; border: 1px solid var(--border); border-radius: 6px; }
+
+        /* 2-7 한영 조합 */
+        .font-pair { font-size: 24px; margin-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid var(--border); padding: 12px; text-align: left; font-size: 14px; }
+        th { background: #f8fafc; }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="side-menu-title">A-2. 타이포그래피</div>
+        <ul class="side-menu-list">
+            <li><a href="#sec-2-1">2-1. 폰트 단위 명세</a></li>
+            <li><a href="#sec-2-2">2-2. 문단 크기 선정기준</a></li>
+            <li><a href="#sec-2-3">2-3. 폰트크기 및 두께</a></li>
+            <li><a href="#sec-2-4">2-4. 폰트 컬러 매트릭스</a></li>
+            <li><a href="#sec-2-5">2-5. 폰트 행간 가이드</a></li>
+            <li><a href="#sec-2-6">2-6. 글자길이와 줄바꿈</a></li>
+            <li><a href="#sec-2-7">2-7. 한글과 영문 조합</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <h1>A-2. 타이포그래피 시스템</h1>
+        <p>웹 디자인에서 서체는 단순히 정보를 전달하는 수단을 넘어, 서비스의 인상과 가독성(Readability)을 결정하는 가장 핵심적인 요소입니다.</p>
+
+        <section id="sec-2-1">
+            <h2>2-1. 폰트 단위 명세</h2>
+            <p>디지털 환경에서는 출력 장치의 해상도에 따라 서체 크기가 달라지므로 명확한 단위 기준이 필요합니다.</p>
+            <div class="demo-card">
+                <table>
+                    <tr>
+                        <th>단위</th>
+                        <th>설명</th>
+                        <th>비고</th>
+                    </tr>
+                    <tr>
+                        <td><strong>PX (Pixel)</strong></td>
+                        <td>디스플레이의 최소 구성 단위. 웹 디자인의 기본값.</td>
+                        <td>고정 크기</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PT (Point)</strong></td>
+                        <td>인쇄 단위(1/72인치). 포토샵/일러스트 기본 단위.</td>
+                        <td>웹에서는 1pt = 1.333px</td>
+                    </tr>
+                    <tr>
+                        <td><strong>REM / EM</strong></td>
+                        <td>최상위(Root) 또는 부모 요소 기준 상대 단위.</td>
+                        <td>반응형 권장</td>
+                    </tr>
+                </table>
+                <div class="tip-box">
+                    <strong>전문가 팁:</strong> 웹 브라우저의 기본 해상도인 96PPI에서는 <strong>12pt가 16px</strong>과 같습니다. 디자인 툴(PT)과 개발(PX) 간의 소통 오류를 방지하기 위해 단위를 통일하세요.
+                </div>
+            </div>
+        </section>
+
+        <section id="sec-2-2">
+            <h2>2-2. 문단 크기 선정기준</h2>
+            <p>본문(Body) 크기는 사용자가 가장 오래 머무는 텍스트입니다. 가독 거리에 따른 가이드라인을 준수해야 합니다.</p>
+            <div class="demo-card">
+                <div style="display: flex; gap: 40px;">
+                    <div style="flex: 1;">
+                        <span class="label">Standard Body (16px)</span>
+                        <p style="font-size: 16px;">웹 브라우저의 표준 기본 크기입니다. 대부분의 데스크탑 웹에서 가장 안정적인 가독성을 제공합니다.</p>
+                    </div>
+                    <div style="flex: 1;">
+                        <span class="label">Small Body (14px)</span>
+                        <p style="font-size: 14px;">정보 밀도가 높은 대시보드나 모바일 환경에서 부가 설명을 위해 사용됩니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sec-2-3">
+            <h2>2-3. 폰트크기 및 두께</h2>
+            <p>시각적 위계(Visual Hierarchy)를 위해 정해진 스케일에 따라 서체를 사용해야 합니다.</p>
+            <div class="demo-card">
+                <div class="type-scale-item">
+                    <div class="type-scale-size">96px</div>
+                    <div style="font-size: 96px; font-weight: 900; letter-spacing: -0.05em;">Display 1</div>
+                </div>
+                <div class="type-scale-item">
+                    <div class="type-scale-size">48px</div>
+                    <div style="font-size: 48px; font-weight: 700;">Headline 1</div>
+                </div>
+                <div class="type-scale-item">
+                    <div class="type-scale-size">21px</div>
+                    <div style="font-size: 21px; font-weight: 700;">Sub-title 1</div>
+                </div>
+                <div class="type-scale-item">
+                    <div class="type-scale-size">16px</div>
+                    <div style="font-size: 16px; font-weight: 400;">Body Regular</div>
+                </div>
+                <div class="tip-box">
+                    <strong>두께 가이드:</strong> 웹폰트 로딩 속도를 위해 <b>Regular(400), Medium(500), Bold(700)</b> 3~4가지만 사용하는 것이 좋습니다.
+                </div>
+            </div>
+        </section>
+
+        <section id="sec-2-4">
+            <h2>2-4. 폰트 컬러 매트릭스</h2>
+            <p>색상만으로 위계를 나누지 말고, 명도 대비를 활용하여 중요도를 조절합니다.</p>
+            <div class="demo-card">
+                <div style="margin-bottom: 20px; color: #111111; font-size: 20px; font-weight: 800;">Primary Text (#111111) - 주요 헤드라인</div>
+                <div style="margin-bottom: 20px; color: #505050; font-size: 16px;">Secondary Text (#505050) - 본문 및 일반 설명</div>
+                <div style="margin-bottom: 20px; color: #767676; font-size: 14px;">Tertiary Text (#767676) - 캡션 및 메타 정보</div>
+                <div style="color: #999999; font-size: 14px;">Disabled Text (#999999) - 비활성 요소</div>
+            </div>
+        </section>
+
+        <section id="sec-2-5">
+            <h2>2-5. 폰트 행간 가이드 (Line-height)</h2>
+            <p>행간은 글자 크기의 1.5배 ~ 1.8배가 가장 적당합니다. 면적 기준 규칙을 적용하세요.</p>
+            <div class="demo-card">
+                <div class="lh-compare">
+                    <div class="lh-box">
+                        <span class="label">Bad (Line-height: 1.0)</span>
+                        <p style="line-height: 1.0; font-size: 15px;">행간이 너무 좁으면 다음 줄을 읽을 때 시선이 섞여 가독성이 급격히 떨어집니다. 특히 한글은 획이 복잡해 더 넓은 행간이 필요합니다.</p>
+                    </div>
+                    <div class="lh-box" style="border-color: var(--primary);">
+                        <span class="label">Good (Line-height: 1.75)</span>
+                        <p style="line-height: 1.75; font-size: 15px;">이상적인 행간은 시선이 매끄럽게 흐르도록 돕습니다. 본문 16px 기준 약 28px의 줄높이가 적절합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sec-2-6">
+            <h2>2-6. 글자길이와 줄바꿈 기준</h2>
+            <p>한 줄이 너무 길면 읽기 지루해지고, 너무 짧으면 리듬이 깨집니다.</p>
+            <div class="demo-card">
+                <span class="label">Ideal Measure (40-60 characters)</span>
+                <div style="max-width: 500px; padding: 20px; border: 1px solid #eee;">
+                    <p style="word-break: keep-all;">한글은 단어 단위로 줄바꿈(keep-all)을 하는 것이 가독성에 유리합니다. 반면 영문은 단어 중간이 끊기지 않도록 주의해야 합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sec-2-7">
+            <h2>2-7. 한글과 영문 조합</h2>
+            <p>서로 다른 언어의 폰트를 섞어 쓸 때는 베이스라인과 시각적 크기를 맞춰야 합니다.</p>
+            <div class="demo-card">
+                <div class="font-pair">
+                    <span style="font-family: 'Pretendard Variable'; font-weight: 700;">Pretendard</span> + 
+                    <span style="font-family: 'Arial'; font-weight: 700;">Arial Mix</span>
+                </div>
+                <p>영문은 한글보다 시각적으로 작아 보일 수 있으므로, 영문 전용 폰트를 섞을 때는 크기를 1-2px 키우거나 베이스라인을 조정합니다.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 현재 위치에 따른 사이드바 활성화 (간단한 스크립트)
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.side-menu-list a');
+            
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
