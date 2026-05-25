@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Design Encyclopedia - 1-6. 간격 시스템</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- 글로벌 디자인 시스템 변수 --- */
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --sidebar-width: 290px;
+            
+            /* 화이트 사이드바 테마 및 프라이머리 컬러 */
+            --sidebar-bg: #ffffff;
+            --primary: #1e293b;
+            --primary-accent: #4f46e5; 
+            --accent-light: #f0fdf4;
+            
+            /* 텍스트 및 경계선 */
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            
+            /* 간격 시스템 전용 토큰 컬러 시스템 (전달 이미지 데이터 기반) */
+            --sp-xxs: #ef4444; /* 4px: Red */
+            --sp-xs:  #f97316; /* 8px: Orange */
+            --sp-sm:  #84cc16; /* 16px: Light Green */
+            --sp-md:  #3b82f6; /* 20px: Blue */
+            --sp-lg:  #a855f7; /* 40px: Purple */
+            --sp-xl:  #ec4899; /* 60px: Pink */
+            
+            /* 상태 표시 피드백 */
+            --success: #16a34a;
+            --warning: #ca8a04;
+            --error: #dc2626;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- 1. 깔끔한 모던 화이트 사이드바 --- */
+        aside {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            color: var(--primary);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 24px 24px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+        }
+
+        .sidebar-brand i {
+            color: var(--primary-accent);
+        }
+
+        .sidebar-scroll-area {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding: 15px 12px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-bottom: 20px;
+        }
+
+        .menu-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            padding: 10px 12px 4px 12px;
+            font-weight: 700;
+        }
+
+        .menu-item a {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            color: #475569;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .menu-item a:hover {
+            background-color: #f1f5f9;
+            color: var(--primary-accent);
+        }
+
+        .menu-item.active a {
+            background-color: #e0e7ff;
+            color: var(--primary-accent);
+            font-weight: 700;
+        }
+
+        /* --- 2. 메인 본문 레이아웃 --- */
+        main {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 50px 80px;
+            max-width: 1200px;
+        }
+
+        header {
+            margin-bottom: 35px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        /* --- 3. 디자인 가이드 섹션 카드 --- */
+        .section-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .section-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-card h2 span {
+            font-size: 12px;
+            background: #e0e7ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--primary-accent);
+            font-weight: 600;
+        }
+
+        .section-desc {
+            font-size: 15px;
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .section-sub-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 28px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* --- 4. 시각화 및 가이드 요소 컴포넌트 --- */
+        .visual-demo {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .demo-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 6대 간격 시스템 매트릭스 칩 */
+        .spacing-preset-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .spatial-token-card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 140px;
+        }
+
+        .token-info-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .token-block-visual {
+            border-radius: 2px;
+            margin: 12px 0;
+        }
+
+        .token-pixel-badge {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* 실무 모바일 네비게이션 간격 결합 복각 모형 */
+        .mock-phone-screen {
+            width: 340px;
+            background: #ffffff;
+            border: 4px solid var(--primary);
+            border-radius: 16px;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mock-nav-header {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            position: relative;
+        }
+        
+        /* 외부 유도 가이드라인 표시용 가상 라인 */
+        .guide-indicator-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 100%;
+            pointer-events: none;
+            border-left: 16px solid rgba(132, 204, 22, 0.15);
+            border-right: 16px solid rgba(132, 204, 22, 0.15);
+        }
+
+        .mock-menu-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            padding: 0 16px;
+        }
+
+        .mock-menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #334155;
+            position: relative;
+            background: #fff;
+        }
+        
+        .item-padding-xs {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .item-padding-lg {
+            padding: 20px 0;
+            border-bottom: 2px solid var(--primary);
+            font-weight: 700;
+        }
+
+        .spacing-guide-tag {
+            font-size: 9px;
+            font-weight: 700;
+            color: #fff;
+            padding: 1px 4px;
+            border-radius: 2px;
+            line-height: 1;
+        }
+
+        /* 실무 상품 상세 컴포넌트 간격 구조 레이아웃 복각 */
+        .mock-detail-block {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .product-meta-section {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .product-title-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 4px; /* xxs: 4px */
+        }
+
+        .guide-badge-inline {
+            font-size: 9px;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .btn-purchase-group {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 8px; /* xs: 8px */
+            margin-top: 40px; /* lg: 40px */
+            position: relative;
+        }
+
+        .btn-ui {
+            height: 48px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            border: 1px solid var(--border-color);
+        }
+        .btn-cart { background: #fff; color: var(--primary); border-color: var(--primary); }
+        .btn-buy { background: var(--primary-accent); color: #fff; border: none; }
+
+        .tip-box {
+            background-color: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #78350f;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="sidebar-brand">
+            <i class="fa-solid fa-book-bookmark"></i> UI/UX Encyclopedia
+        </div>
+        
+        <div class="sidebar-scroll-area">
+            <div class="menu-title">A. 이론</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="index.html">1-1. 해상도와 레스터화</a></li>
+                <li class="menu-item"><a href="theory-1-2.html">1-2. 해상도 종류</a></li>
+                <li class="menu-item"><a href="theory-1-3.html">1-3. 해상도에 따른 배율디자인</a></li>
+                <li class="menu-item"><a href="theory-1-4.html">1-4. 그리드시스템</a></li>
+                <li class="menu-item"><a href="theory-1-5.html">1-5. 반응형 그리드 시스템</a></li>
+                <li class="menu-item active"><a href="theory-1-6.html">1-6. 간격 시스템</a></li>
+            </ul>
+
+            <div class="menu-title">B. 타이포그래피</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="typo-2-1.html">2-1. 폰트 단위</a></li>
+                <li class="menu-item"><a href="typo-2-2.html">2-2. 문단 크기 선정기준</a></li>
+                <li class="menu-item"><a href="typo-2-3.html">2-3. 폰트크기 및 두께</a></li>
+                <li class="menu-item"><a href="typo-2-4.html">2-4. 폰트 컬러</a></li>
+                <li class="menu-item"><a href="typo-2-5.html">2-5. 폰트행간</a></li>
+                <li class="menu-item"><a href="typo-2-6.html">2-6. 글자길이와 줄바꿈 기준</a></li>
+                <li class="menu-item"><a href="typo-2-7.html">2-7. 한글과 영문 조합</a></li>
+            </ul>
+
+            <div class="menu-title">C. 컬러</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="color-3-1.html">3-1. 브랜드 컬러</a></li>
+                <li class="menu-item"><a href="color-3-2.html">3-2. 그레이스케일</a></li>
+                <li class="menu-item"><a href="color-3-3.html">3-3. 시스템 컬러</a></li>
+                <li class="menu-item"><a href="color-3-4.html">3-4. 컬러 사용과 용도</a></li>
+                <li class="menu-item"><a href="color-3-5.html">3-5. 컬러 적용시 주의점</a></li>
+            </ul>
+
+            <div class="menu-title">D. 컴포넌트</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="components.html">드롭다운 / 인풋 등</a></li>
+            </ul>
+
+            <div class="menu-title">E. 인터랙션</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="interactions.html">상태별 피드백 규칙</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main>
+        <header>
+            <h1>A. 이론 (Theory Base)</h1>
+            <p>UI 내부 구성 요소의 시각적 결합도와 공간 리듬감을 제어하기 위한 고정 간격 시스템을 규정합니다.</p>
+        </header>
+
+        <section id="sec-1-6" class="section-card">
+            <h2><span>1-6</span> 간격 시스템 (Spacing System)</h2>
+            
+            <p class="section-desc">
+                디자인 작업을 진행할 때 규칙 없이 1px, 2px 단위로 미세 조정을 하며 여백을 디자인할 경우 너무 작은 단위이기 때문에 작업의 효율성이 극도로 떨어집니다. 또한 퍼블리셔나 개발자가 레이아웃을 구현할 때 모든 화면 여백 수치를 일일이 검사해야 하므로 소통 비용이 증가합니다. 그래서 우리는 컴포넌트의 안쪽 여백(Padding)과 바깥쪽 격리 거리(Margin)의 기준을 <strong>4배수에 기반한 6가지 핵심 간격 단위</strong>로 규정하여 사용하길 권장합니다. 이 간격 시스템은 디자인 작업의 속도를 획기적으로 높이고 디자이너와 개발자 간의 소통을 명확하고 원활하게 도와주는 공통 언어입니다.
+            </p>
+
+            <h3 class="section-sub-title"><i class="fa-solid fa-cubes-stacked"></i> 간격 시스템 단위 토큰 매트릭스</h3>
+            <p class="section-desc">
+                디자인 시스템 구축 시 스타일 가이드 토큰명에 대입하는 6가지 규격화된 크기 척도입니다. 크기별 전용 컬러 가이드를 매치하여 레이아웃 설계 시 여백의 가독성을 방어합니다.
+            </p>
+
+            <div class="visual-demo">
+                <div class="demo-label"><i class="fa-solid fa-layer-group"></i> 4배수 기반 6단계 표준 간격 프리셋 명세 (Token Scale)</div>
+                <div class="spacing-preset-grid">
+                    
+                    <div class="spatial-token-card">
+                        <span class="token-info-title">xxs</span>
+                        <div class="token-block-visual" style="width:4px; height:4px; background:var(--sp-xxs);"></div>
+                        <span class="token-pixel-badge">4 px</span>
+                    </div>
+
+                    <div class="spatial-token-card">
+                        <span class="token-info-title">xs</span>
+                        <div class="token-block-visual" style="width:8px; height:8px; background:var(--sp-xs);"></div>
+                        <span class="token-pixel-badge">8 px</span>
+                    </div>
+
+                    <div class="spatial-token-card">
+                        <span class="token-info-title">sm</span>
+                        <div class="token-block-visual" style="width:16px; height:16px; background:var(--sp-sm);"></div>
+                        <span class="token-pixel-badge">16 px</span>
+                    </div>
+
+                    <div class="spatial-token-card">
+                        <span class="token-info-title">md</span>
+                        <div class="token-block-visual" style="width:20px; height:20px; background:var(--sp-md);"></div>
+                        <span class="token-pixel-badge">20 px</span>
+                    </div>
+
+                    <div class="spatial-token-card">
+                        <span class="token-info-title">lg</span>
+                        <div class="token-block-visual" style="width:40px; height:40px; background:var(--sp-lg);"></div>
+                        <span class="token-pixel-badge">40 px</span>
+                    </div>
+
+                    <div class="spatial-token-card">
+                        <span class="token-info-title">xl</span>
+                        <div class="token-block-visual" style="width:60px; height:60px; background:var(--sp-xl);"></div>
+                        <span class="token-pixel-badge">60 px</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <h3 class="section-sub-title"><i class="fa-solid fa-mobile-button"></i> 간격 시스템 실제 적용 예시 (UI 컴포넌트 실증)</h3>
+            <p class="section-desc">
+                규정된 여백 토큰들이 실제 모바일 화면과 제품 상세 페이지 내에서 어떻게 유기적으로 결합하여 안정감을 확보하는지 실무 예시 모형을 통해 명확히 학습합니다.
+            </p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; margin-top: 20px;">
+                
+                <div class="visual-demo" style="margin:0;">
+                    <div class="demo-label"><i class="fa-solid fa-list"></i> 예시 A: 카테고리 네비게이션 트리 적용</div>
+                    <div class="mock-phone-screen">
+                        <div class="mock-nav-header">
+                            <div class="guide-indicator-line"></div>
+                            <span style="font-weight:700;">카테고리</span>
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                        <ul class="mock-menu-list">
+                            <li class="mock-menu-item item-padding-lg">
+                                <span>여성의류</span><i class="fa-solid fa-chevron-up" style="font-size:12px; color:var(--sp-md);"></i>
+                                <span class="spacing-guide-tag" style="background:var(--sp-lg); position:absolute; right:30px; top:35%;">lg(40px)</span>
+                            </li>
+                            <li class="mock-menu-item item-padding-xs" style="padding-left: 16px;">
+                                <div style="position:absolute; left:0; width:4px; height:100%; background:var(--sp-md);"></div>
+                                <span style="font-weight:600; color:var(--primary-accent);">아우터</span>
+                                <span class="spacing-guide-tag" style="background:var(--sp-md);">md(20px)</span>
+                            </li>
+                            <li class="mock-menu-item item-padding-xs" style="padding-left: 16px;"><span>상의</span><span class="spacing-guide-tag" style="background:var(--sp-xs);">xs(8px)</span></li>
+                            <li class="mock-menu-item item-padding-xs" style="padding-left: 16px;"><span>팬츠/스커트</span></li>
+                            <li class="mock-menu-item item-padding-xs" style="padding-left: 16px;"><span>원피스</span></li>
+                            <li class="mock-menu-item item-padding-lg">
+                                <span>남성의류</span><i class="fa-solid fa-chevron-down" style="font-size:12px; color:var(--text-muted);"></i>
+                            </li>
+                        </ul>
+                    </div>
+                    <p style="font-size:12px; color:var(--text-muted); text-align:center; margin-top:12px;">
+                        화면 좌우 절대 여백은 <strong style="color:var(--sp-sm);">sm(16px)</strong> 고정, 대분류 리스트 패딩 높이는 <strong style="color:var(--sp-lg);">lg(40px)</strong>, 하위 트리 내부 인덴트 격리는 <strong style="color:var(--sp-md);">md(20px)</strong>를 적용해 계층을 분리합니다.
+                    </p>
+                </div>
+
+                <div class="visual-demo" style="margin:0; display:flex; flex-direction:column; justify-content:center;">
+                    <div class="demo-label"><i class="fa-solid fa-bag-shopping"></i> 예시 B: 상품 상세 및 구매 정보 인터페이스</div>
+                    <div class="mock-detail-block">
+                        <div class="product-meta-section">
+                            <div class="product-title-group">
+                                <span class="guide-badge-inline" style="background:var(--sp-xxs);">xxs(4px)</span>
+                                <h3 style="font-size: 16px; color:var(--primary);">[Sale] simple white stand</h3>
+                            </div>
+                            <div style="margin-top: 8px;">
+                                <span style="color:var(--error); font-weight:700; font-size:16px;">20%</span>
+                                <span style="font-weight:700; font-size:16px; margin-left: 4px;">375,200원</span>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; color:var(--text-muted);">
+                            <div style="display:flex; justify-content:space-between;"><span>배송비</span><span style="color:var(--primary); font-weight:600;">0원 (7만원 이상 무료)</span></div>
+                            <div style="background:#f8fafc; padding:12px; border-radius:4px; border:1px solid var(--border-color); font-size:13px; display:flex; justify-content:space-between; align-items:center;">
+                                <span>select option</span><i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+
+                        <div class="btn-purchase-group">
+                            <span class="spacing-guide-tag" style="background:var(--sp-lg); position:absolute; top:-25px; left:0;">위쪽 마진: lg(40px) 연결</span>
+                            <span class="spacing-guide-tag" style="background:var(--sp-xs); position:absolute; top:12px; left:37%;">버튼 사이 간격: xs(8px)</span>
+                            <div class="btn-ui btn-cart">장바구니</div>
+                            <div class="btn-ui btn-buy">구매하기</div>
+                        </div>
+                    </div>
+                    <p style="font-size:12px; color:var(--text-muted); text-align:center; margin-top:12px;">
+                        텍스트와 배지 결합 등 마이크로 정렬에는 <strong style="color:var(--sp-xxs);">xxs(4px)</strong>, 대기 중인 구매 액션 버튼 상단 분리 벽에는 <strong style="color:var(--sp-lg);">lg(40px)</strong>의 규칙적인 거리를 양도합니다.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="tip-box">
+                <i class="fa-solid fa-lightbulb"></i> <strong>주니어 주석: 유연한 간격 다각화 운영론</strong><br>
+                간격 시스템 구축 시 반드시 모든 수치를 8의 배수로만 채우려고 강박을 가질 필요는 전혀 없습니다. 텍스트 간의 미세 밀착 정렬이나 아이콘 배지 조립 시에는 <strong>4px(xxs)</strong> 단위가 완벽한 밀도감을 제공하며, 정렬 범주에 따라 <strong>20px(md)</strong>과 같은 범용 단위를 혼용 조합하면 인터페이스 스크린 전반에 걸쳐 숨통을 틔워주는 매끄러운 화이트 스페이스(Negative Space) 리듬을 유연하게 완성할 수 있습니다.
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

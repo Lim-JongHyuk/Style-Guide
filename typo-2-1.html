@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Design Encyclopedia - 2-1. 폰트 단위</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- 글로벌 디자인 시스템 변수 --- */
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --sidebar-width: 290px;
+            
+            /* 화이트 사이드바 테마 및 프라이머리 컬러 */
+            --sidebar-bg: #ffffff;
+            --primary: #1e293b;
+            --primary-accent: #4f46e5; 
+            --accent-light: #f0e7ff;
+            
+            /* 텍스트 및 경계선 */
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            
+            /* 상태 표시 피드백 */
+            --success: #16a34a;
+            --warning: #ca8a04;
+            --error: #dc2626;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- 1. 깔끔한 모던 화이트 사이드바 --- */
+        aside {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            color: var(--primary);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 24px 24px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+        }
+
+        .sidebar-brand i {
+            color: var(--primary-accent);
+        }
+
+        .sidebar-scroll-area {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding: 15px 12px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-bottom: 20px;
+        }
+
+        .menu-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            padding: 10px 12px 4px 12px;
+            font-weight: 700;
+        }
+
+        .menu-item a {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            color: #475569;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .menu-item a:hover {
+            background-color: #f1f5f9;
+            color: var(--primary-accent);
+        }
+
+        .menu-item.active a {
+            background-color: #e0e7ff;
+            color: var(--primary-accent);
+            font-weight: 700;
+        }
+
+        /* --- 2. 메인 본문 레이아웃 --- */
+        main {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 50px 80px;
+            max-width: 1200px;
+        }
+
+        header {
+            margin-bottom: 35px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        /* --- 3. 디자인 가이드 섹션 카드 --- */
+        .section-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .section-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-card h2 span {
+            font-size: 12px;
+            background: #e0e7ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--primary-accent);
+            font-weight: 600;
+        }
+
+        .section-desc {
+            font-size: 15px;
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .section-sub-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 28px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* --- 4. 시각화 및 가이드 요소 컴포넌트 --- */
+        .visual-demo {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .demo-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 4대 타이포 단위 개념 카드 그리드 */
+        .unit-card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .unit-card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 4px solid var(--primary-accent);
+        }
+        .unit-card h3 { font-size: 18px; margin-bottom: 4px; color: var(--primary); }
+        .unit-card .unit-alias { font-size: 11px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px; font-weight: bold; }
+        .unit-card p { font-size: 12.5px; color: #475569; line-height: 1.5; }
+
+        /* PPI별 웹브라우저 폰트 렌더링 왜곡 시뮬레이터 */
+        .ppi-simulate-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .ppi-sim-row {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 16px 20px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 2fr;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ppi-meta { font-size: 13.5px; font-weight: 700; color: var(--primary); }
+        .ppi-meta span { display: block; font-size: 11px; color: var(--text-muted); font-weight: 400; margin-top: 2px; }
+        .ppi-formula { font-family: monospace; font-size: 12px; color: #ec4899; background: #fff1f2; padding: 4px 8px; border-radius: 4px; justify-self: start; }
+
+        .ppi-render-output {
+            font-weight: 700;
+            color: #1e293b;
+            border-left: 2px dashed var(--border-color);
+            padding-left: 20px;
+        }
+
+        /* 정밀 스타일 매트릭스 테이블 */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+            margin-top: 16px;
+            background: #fff;
+        }
+
+        .matrix-table th {
+            background-color: #f8fafc;
+            padding: 12px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border-color);
+            color: var(--primary);
+            text-align: left;
+        }
+
+        .matrix-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+            color: #334155;
+        }
+
+        .highlight-row { background-color: #f0fdf4 !important; font-weight: 600; color: var(--success) !important; }
+
+        .tip-box {
+            background-color: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #78350f;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="sidebar-brand">
+            <i class="fa-solid fa-book-bookmark"></i> UI/UX Encyclopedia
+        </div>
+        
+        <div class="sidebar-scroll-area">
+            <div class="menu-title">A. 이론</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="index.html">1-1. 해상도와 레스터화</a></li>
+                <li class="menu-item"><a href="theory-1-2.html">1-2. 해상도 종류</a></li>
+                <li class="menu-item"><a href="theory-1-3.html">1-3. 해상도에 따른 배율디자인</a></li>
+                <li class="menu-item"><a href="theory-1-4.html">1-4. 그리드시스템</a></li>
+                <li class="menu-item"><a href="theory-1-5.html">1-5. 반응형 그리드 시스템</a></li>
+                <li class="menu-item"><a href="theory-1-6.html">1-6. 간격 시스템</a></li>
+            </ul>
+
+            <div class="menu-title">B. 타이포그래피</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item active"><a href="typo-2-1.html">2-1. 폰트 단위</a></li>
+                <li class="menu-item"><a href="typo-2-2.html">2-2. 문단 크기 선정기준</a></li>
+                <li class="menu-item"><a href="typo-2-3.html">2-3. 폰트크기 및 두께</a></li>
+                <li class="menu-item"><a href="typo-2-4.html">2-4. 폰트 컬러</a></li>
+                <li class="menu-item"><a href="typo-2-5.html">2-5. 폰트행간</a></li>
+                <li class="menu-item"><a href="typo-2-6.html">2-6. 글자길이와 줄바꿈 기준</a></li>
+                <li class="menu-item"><a href="typo-2-7.html">2-7. 한글과 영문 조합</a></li>
+            </ul>
+
+            <div class="menu-title">C. 컬러</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="color-3-1.html">3-1. 브랜드 컬러</a></li>
+                <li class="menu-item"><a href="color-3-2.html">3-2. 그레이스케일</a></li>
+                <li class="menu-item"><a href="color-3-3.html">3-3. 시스템 컬러</a></li>
+                <li class="menu-item"><a href="color-3-4.html">3-4. 컬러 사용과 용도</a></li>
+                <li class="menu-item"><a href="color-3-5.html">3-5. 컬러 적용시 주의점</a></li>
+            </ul>
+
+            <div class="menu-title">D. 컴포넌트</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="components.html">드롭다운 / 인풋 등</a></li>
+            </ul>
+
+            <div class="menu-title">E. 인터랙션</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="interactions.html">상태별 피드백 규칙</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main>
+        <header>
+            <h1>B. 타이포그래피 (Typography System)</h1>
+            <p>다양한 디스플레이 출력 장치에서 서체의 가독성을 완벽히 제어하기 위한 CSS 크기 단위 체계를 확립합니다.</p>
+        </header>
+
+        <section id="sec-2-1" class="section-card">
+            <h2><span>2-1</span> 폰트 단위 개요 및 개념 정의</h2>
+            
+            <p class="section-desc">
+                디지털 화면 인터페이스를 설계할 때 타이포그래피의 크기를 선언하는 단위는 결과물의 선명도와 반응형 유연성을 결정짓는 핵심 기반입니다. 실무 웹/앱 환경에서 사용하는 4대 핵심 단위의 물리적 개념 정의는 아래와 같습니다.
+            </p>
+
+            <div class="unit-card-grid">
+                <div class="unit-card">
+                    <h3>pixel</h3>
+                    <div class="unit-alias">px</div>
+                    <p>디스플레이 화면을 구성하는 <strong>가장 기본적인 최소 단위(1dot)</strong>입니다. 하나의 글꼴이 출력될 때 차지하는 물리적인 격자 점의 총개수를 명확하게 통제합니다.</p>
+                </div>
+                <div class="unit-card" style="border-top-color: #3b82f6;">
+                    <h3>point</h3>
+                    <div class="unit-alias">pt</div>
+                    <p>전통적인 타이포그래피 인쇄 영역에서 사용하는 단위로, <strong>1포인트는 1/72인치</strong>에 해당합니다. 디스플레이 스크린이 발명되기 전 물리 종이 인쇄 시절부터 확립된 절대 크기 기준입니다.</p>
+                </div>
+                <div class="unit-card" style="border-top-color: #10b981;">
+                    <h3>em</h3>
+                    <div class="unit-alias">em</div>
+                    <p>상위 부모(Parent) 요소의 폰트 크기를 기준으로 비례하는 상대 단위입니다. <strong>1em은 100%</strong>를 의미하며, 컴포넌트 내부에서 유기적으로 결합된 텍스트 크기를 변환할 때 유용합니다.</p>
+                </div>
+                <div class="unit-card" style="border-top-color: #f59e0b;">
+                    <h3>root em</h3>
+                    <div class="unit-alias">rem</div>
+                    <p>부모 요소가 아닌 최상위 루트(<code style="color:var(--primary-accent)">html</code>) 태그의 기준 서체 크기(웹 표준 디폴트 16px)를 다이렉트로 추종하는 상대 배율 단위입니다.</p>
+                </div>
+            </div>
+
+            <h3 class="section-sub-title"><i class="fa-solid fa-print"></i> 웹 환경에서의 서체 단위 매커니즘: pt와 px의 차이</h3>
+            <p class="section-desc">
+                pt와 px의 가장 지대한 차이점은 최종 출력물이 표현되는 <strong>'장치(Media)'</strong>의 환경에서 극명하게 나타납니다.
+            </p>
+            <p class="section-desc">
+                최종 출력 대상이 <strong>물리적인 '종이'</strong>일 때는 화면의 밀도(ppi) 환경과 무관하게(72ppi, 96ppi, 150ppi) <code style="color:var(--primary-accent)">24pt</code> 서체를 사용하면 인쇄된 결과물 내에서 항상 자로 잰 듯 똑같은 물리 크기로 정확히 고정되어 인쇄됩니다. 
+            </p>
+            <p class="section-desc">
+                반면, 출력 대상이 <strong>'디스플레이 장치'</strong>가 되면 기기 해상도 밀도(ppi)에 따라 화면상에 그려지는 24pt의 크기가 제각각 왜곡되어 다르게 보이는 기술적 하자가 발생합니다. 이때 화면 밀도의 간섭을 받는 pt 대신 물리 격자 단위인 <strong>px(Pixel)</strong>을 사용하여 서체를 <code style="color:var(--primary-accent)">24px</code>로 명시해 주면, 모든 스마트폰과 모니터 브라우저는 기기 밀도와 상관없이 정확히 텍스트의 수직 높이를 물리 24픽셀 격자 크기로 깔끔하게 통일해 표시합니다. 따라서 어떤 브라우저에서도 일관된 UI 결과물을 도출해야 하는 <strong>웹 프로퍼티 개발 시에는 pt 단위 대신 px 단위를 사용할 것을 절대적으로 권장</strong>합니다.
+            </p>
+
+            <div class="visual-demo">
+                <div class="demo-label"><i class="fa-solid fa-desktop"></i> 동일한 24pt가 디스플레이 밀도(PPI)에 따라 왜곡 렌더링되는 실증 예시</div>
+                <div class="ppi-simulate-container">
+                    
+                    <div class="ppi-sim-row">
+                        <div class="ppi-meta">72 ppi 환경<span>과거 표준 모니터 밀도</span></div>
+                        <div class="ppi-formula">1px * (72 / 72) = 100%</div>
+                        <div class="ppi-render-output" style="font-size: 24px;">24pt 서체 크기 (표준 1:1)</div>
+                    </div>
+
+                    <div class="ppi-sim-row" style="border-left: 4px solid var(--warning);">
+                        <div class="ppi-meta">96 ppi 환경<span>일반 Windows 데스크톱 밀도</span></div>
+                        <div class="ppi-formula">1px * (96 / 72) = 133%</div>
+                        <div class="ppi-render-output" style="font-size: 32px;">24pt 서체 크기 (33% 확대 왜곡)</div>
+                    </div>
+
+                    <div class="ppi-sim-row" style="border-left: 4px solid var(--error);">
+                        <div class="ppi-meta">300 ppi 환경<span>고밀도 플래그십 디바이스</span></div>
+                        <div class="ppi-formula">1px * (300 / 72) = 416%</div>
+                        <div class="ppi-render-output" style="font-size: 48px;">24pt 서체 크기 (416% 비대화 왜곡)</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tip-box" style="background-color: #fff1f2; border-left-color: var(--error); color: #991b1b;">
+                <i class="fa-solid fa-circle-exclamation"></i> <strong>주니어 디자이너가 흔히 겪는 툴 주의 사항 안내</strong><br>
+                웹 브라우저 시스템이 연산하는 pt 단위와 포토샵(Photoshop) 같은 그래픽 디자인 툴의 구형 pt 단위 판정 기준은 다릅니다. 만약 포토샵/일러스트레이터 환경에서 텍스트 단위를 실수로 pt로 지정해 두고 수치를 기입하면, 해당 서체의 픽셀 변환 높이가 고스란히 픽셀(px) 크기로 매핑되어 출력되는 혼선이 일어납니다. UI 전용 설계 툴(Figma 등)에서는 항상 기본 단위가 픽셀 구조(1배수 dp)임을 명확히 인지하세요.
+            </div>
+
+            <h3 class="section-sub-title"><i class="fa-solid fa-table-list"></i> CSS 단위별 폰트 크기 표준 변환 매트릭스</h3>
+            <p class="section-desc">
+                제공해주신 스타일 가이드 정밀 데이터를 기반으로 작성된 <strong>Points, Pixels, Ems, Percent 간의 규격 매핑 테이블</strong>입니다. 웹 표준 브라우저의 마스터 폰트 크기인 16px(12pt / 1em / 100%)을 정석 기준선으로 삼고 계층을 설계합니다.
+            </p>
+
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th>Points (인쇄 절대 단위)</th>
+                        <th>Pixels (웹 물리 표준) [추천]</th>
+                        <th>Ems / Rems (상대 비율 단위)</th>
+                        <th>Percent (백분율 단위)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>6 pt</td><td>8 px</td><td>0.5 em</td><td>50 %</td></tr>
+                    <tr><td>7 pt</td><td>9 px</td><td>0.55 em</td><td>55 %</td></tr>
+                    <tr><td>7.5 pt</td><td>10 px</td><td>0.625 em</td><td>62.5 %</td></tr>
+                    <tr><td>8 pt</td><td>11 px</td><td>0.7 em</td><td>70 %</td></tr>
+                    <tr><td>9 pt</td><td>12 px</td><td>0.75 em</td><td>75 %</td></tr>
+                    <tr><td>10 pt</td><td>13 px</td><td>0.8 em</td><td>80 %</td></tr>
+                    <tr><td>10.5 pt</td><td>14 px</td><td>0.875 em</td><td>87.5 %</td></tr>
+                    <tr><td>11 pt</td><td>15 px</td><td>0.95 em</td><td>95 %</td></tr>
+                    <tr class="highlight-row">
+                        <td>12 pt (기준선)</td>
+                        <td>16 px (웹 표준 디폴트)</td>
+                        <td>1.0 em (기준 배율)</td>
+                        <td>100 % (표준 스케일)</td>
+                    </tr>
+                    <tr><td>13 pt</td><td>17 px</td><td>1.05 em</td><td>105 %</td></tr>
+                    <tr><td>13.5 pt</td><td>18 px</td><td>1.125 em</td><td>112.5 %</td></tr>
+                    <tr><td>14 pt</td><td>19 px</td><td>1.2 em</td><td>120 %</td></tr>
+                    <tr><td>14.5 pt</td><td>20 px</td><td>1.25 em</td><td>125 %</td></tr>
+                    <tr><td>15 pt</td><td>21 px</td><td>1.3 em</td><td>130 %</td></tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <i class="fa-solid fa-lightbulb"></i> <strong>전문가를 위한 실무 폰트 선언 가이드 (px vs rem)</strong><br>
+                현재 모던 UI/UX 퍼블리싱 실무에서는 일반 본문 서체 설계 시 고정치수인 <code style="color:var(--primary-accent)">px</code> 대신 최상위 루트 크기를 따르는 상대치수인 <code style="color:var(--primary-accent)">rem</code> 단위를 결합해 사용하는 추세입니다. 고령자나 약시를 가진 사용자가 브라우저 설정에서 '글자 크기 크게 보기' 기능을 활성화했을 때, px로 고정된 웹사이트는 본문이 커지지 않아 접근성 인증에 실패하게 됩니다. 반면 rem 단위로 유연하게 코딩된 타이포 시스템은 사용자의 기기 설정에 맞춰 본문이 부드럽게 스케일업되므로 스마트한 반응형 인터페이스를 완성해 줍니다.
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

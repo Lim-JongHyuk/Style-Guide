@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Design Encyclopedia - 2-2. 문단 크기 선정기준</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- 글로벌 디자인 시스템 변수 --- */
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --sidebar-width: 290px;
+            
+            /* 화이트 사이드바 테마 및 프라이머리 컬러 */
+            --sidebar-bg: #ffffff;
+            --primary: #1e293b;
+            --primary-accent: #4f46e5; 
+            --accent-light: #f0e7ff;
+            
+            /* 텍스트 및 경계선 */
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            
+            /* 테크 기업 브랜드 컬러 지표 */
+            --apple-color: #000000;
+            --ms-color: #00a4ef;
+            
+            /* 상태 표시 피드백 */
+            --success: #16a34a;
+            --warning: #ca8a04;
+            --error: #dc2626;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- 1. 깔끔한 모던 화이트 사이드바 --- */
+        aside {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            color: var(--primary);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 24px 24px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+        }
+
+        .sidebar-brand i {
+            color: var(--primary-accent);
+        }
+
+        .sidebar-scroll-area {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding: 15px 12px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-bottom: 20px;
+        }
+
+        .menu-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            padding: 10px 12px 4px 12px;
+            font-weight: 700;
+        }
+
+        .menu-item a {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            color: #475569;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .menu-item a:hover {
+            background-color: #f1f5f9;
+            color: var(--primary-accent);
+        }
+
+        .menu-item.active a {
+            background-color: #e0e7ff;
+            color: var(--primary-accent);
+            font-weight: 700;
+        }
+
+        /* --- 2. 메인 본문 레이아웃 --- */
+        main {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 50px 80px;
+            max-width: 1200px;
+        }
+
+        header {
+            margin-bottom: 35px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        /* --- 3. 디자인 가이드 섹션 카드 --- */
+        .section-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .section-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-card h2 span {
+            font-size: 12px;
+            background: #e0e7ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--primary-accent);
+            font-weight: 600;
+        }
+
+        .section-desc {
+            font-size: 15px;
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .section-sub-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 28px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* --- 4. 시각화 및 가이드 요소 컴포넌트 --- */
+        .visual-demo {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .demo-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 역사적 선정기준 대조 레이아웃 */
+        .history-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .history-card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: 8px;
+            position: relative;
+        }
+        .history-card.apple-card { border-top: 4px solid var(--apple-color); }
+        .history-card.ms-card { border-top: 4px solid var(--ms-color); }
+
+        .brand-icon-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .formula-box-neutral {
+            font-family: monospace;
+            font-size: 13px;
+            background: #f1f5f9;
+            padding: 6px 10px;
+            border-radius: 4px;
+            margin-top: 12px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        /* 시청거리 비례 가독성 확장 시뮬레이터 */
+        .distance-canvas {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .distance-axis-row {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .eye-tracker {
+            width: 50px;
+            font-size: 24px;
+            color: var(--text-muted);
+        }
+
+        .distance-ray {
+            flex-grow: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-accent) 0%, #cbd5e1 100%);
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .distance-tag-badge {
+            position: absolute;
+            top: -22px;
+            left: 40%;
+            font-size: 11px;
+            font-weight: 700;
+            background: var(--primary);
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .media-frame-target {
+            width: 140px;
+            border-left: 3px solid var(--primary-accent);
+            padding-left: 12px;
+        }
+        .media-frame-target h5 { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+        .media-frame-target .font-render { font-weight: 700; color: var(--primary); }
+
+        /* 알림 및 팁 박스 */
+        .tip-box {
+            background-color: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #78350f;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="sidebar-brand">
+            <i class="fa-solid fa-book-bookmark"></i> UI/UX Encyclopedia
+        </div>
+        
+        <div class="sidebar-scroll-area">
+            <div class="menu-title">A. 이론</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="index.html">1-1. 해상도와 레스터화</a></li>
+                <li class="menu-item"><a href="theory-1-2.html">1-2. 해상도 종류</a></li>
+                <li class="menu-item"><a href="theory-1-3.html">1-3. 해상도에 따른 배율디자인</a></li>
+                <li class="menu-item"><a href="theory-1-4.html">1-4. 그리드시스템</a></li>
+                <li class="menu-item"><a href="theory-1-5.html">1-5. 반응형 그리드 시스템</a></li>
+                <li class="menu-item"><a href="theory-1-6.html">1-6. 간격 시스템</a></li>
+            </ul>
+
+            <div class="menu-title">B. 타이포그래피</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="typo-2-1.html">2-1. 폰트 단위</a></li>
+                <li class="menu-item active"><a href="typo-2-2.html">2-2. 문단 크기 선정기준</a></li>
+                <li class="menu-item"><a href="typo-2-3.html">2-3. 폰트크기 및 두께</a></li>
+                <li class="menu-item"><a href="typo-2-4.html">2-4. 폰트 컬러</a></li>
+                <li class="menu-item"><a href="typo-2-5.html">2-5. 폰트행간</a></li>
+                <li class="menu-item"><a href="typo-2-6.html">2-6. 글자길이와 줄바꿈 기준</a></li>
+                <li class="menu-item"><a href="typo-2-7.html">2-7. 한글과 영문 조합</a></li>
+            </ul>
+
+            <div class="menu-title">C. 컬러</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="color-3-1.html">3-1. 브랜드 컬러</a></li>
+                <li class="menu-item"><a href="color-3-2.html">3-2. 그레이스케일</a></li>
+                <li class="menu-item"><a href="color-3-3.html">3-3. 시스템 컬러</a></li>
+                <li class="menu-item"><a href="color-3-4.html">3-4. 컬러 사용과 용도</a></li>
+                <li class="menu-item"><a href="color-3-5.html">3-5. 컬러 적용시 주의점</a></li>
+            </ul>
+
+            <div class="menu-title">D. 컴포넌트</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="components.html">드롭다운 / 인풋 등</a></li>
+            </ul>
+
+            <div class="menu-title">E. 인터랙션</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="interactions.html">상태별 피드백 규칙</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main>
+        <header>
+            <h1>B. 타이포그래피 (Typography System)</h1>
+            <p>글로벌 표준 브라우저 및 운영체제 환경에서 16px이 본문 문단의 기본 크기로 확정된 공학적 배경을 이해합니다.</p>
+        </header>
+
+        <section id="sec-2-2" class="section-card">
+            <h2><span>2-2</span> 문단 크기의 역사적·공학적 선정 기준</h2>
+            
+            <p class="section-desc">
+                UI/UX 설계를 처음 배울 때 마주하는 가장 강력한 규칙 중 하나는 <strong>"일반적인 웹 본문 문단의 디폴트 서체 크기는 16px이다"</strong>라는 원칙입니다. 이 수치는 단순한 감각이나 우연에 의해 정의된 것이 아니라, 글로벌 디지털 인터페이스 시장을 이끌어온 Apple사와 Microsoft사의 디스플레이 가독성 연구 및 인간공학적 시청 거리 산출 공식에 기반하여 수립된 표준 규격입니다.
+            </p>
+
+            <div class="visual-demo">
+                <div class="demo-label"><i class="fa-solid fa-building-flag"></i> 양대 테크 거인의 디스플레이 해상도 밀도(PPI) 및 서체 매핑 가이드라인</div>
+                <div class="history-grid">
+                    
+                    <div class="history-card apple-card">
+                        <div class="brand-icon-title"><i class="fa-brands fa-apple"></i> Apple사의 문단 크기 선정 기준</div>
+                        <p style="font-size:13px; color:#334155; line-height:1.6;">
+                            초기 Mac OS 환경을 설계할 당시, <strong>1 point = 1/72 inch</strong>라는 인쇄 타이포그래피 공식에 정교하게 착안하여 물리 화면 해상도를 <strong>72ppi</strong> 디스플레이 표준으로 최초 채택했습니다. <br>
+                            <br>
+                            이는 전통 타자기 세대에서 서적 본문용으로 범용 사용되던 가장 이상적인 글씨 크기인 <strong>12pt</strong>를 모니터 화면상에서도 왜곡 없이 일치하는 <strong>12px</strong> 크기로 정확하게 투영하기 위함이었습니다. 즉, <strong>물리 인쇄물과 완벽하게 1:1로 대응하는 실제 크기</strong>의 리얼리즘 구현을 목적으로 72ppi를 운용했습니다.
+                        </p>
+                        <div class="formula-box-neutral" style="color:var(--apple-color);">72ppi 해상도: 1 pt = 1 px 마크</div>
+                    </div>
+
+                    <div class="history-card ms-card">
+                        <div class="brand-icon-title" style="color:var(--ms-color);"><i class="fa-brands fa-windows"></i> Microsoft사의 문단 크기 선정 기준</div>
+                        <p style="font-size:13px; color:#334155; line-height:1.6;">
+                            반면 마이크로소프트는 인간공학 관점에서 <strong>사용자와 컴퓨터 디스플레이 모니터의 시청 거리가 책이나 인쇄 문서를 눈앞에서 직접 읽을 때의 평균 거리보다 약 4/3배 더 멀리 떨어져 있다는 점</strong>에 집중했습니다. <br>
+                            <br>
+                            따라서 동일한 가독성을 제공하려면 화면 글씨의 크기도 정비례하게 키워야 하므로 해상도를 4/3배 확장한 <strong>96ppi</strong>를 표준으로 선언했습니다. 현대 우리가 보편적으로 활용하는 일반 웹 브라우저 엔진은 모두 이 96ppi 해상도 레이아웃 연산 시스템을 조상으로 따르고 있습니다.
+                        </p>
+                        <div class="formula-box-neutral" style="color:var(--ms-color); background-color:#f0f9ff;">96ppi 해상도: pt × (4 / 3) = px 배정</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <h3 class="section-sub-title"><i class="fa-solid fa-arrows-to-eye"></i> 인간공학적 시청 거리와 CSS 픽셀 변환 연산의 메커니즘</h3>
+            <p class="section-desc">
+                W3C 기구에 의해 CSS 마크업 규격이 계획될 당시 마이크로소프트의 <strong>96ppi 디스플레이 규격이 표준으로 수립</strong>되었습니다. 이로 인해 웹 환경에서의 폰트 연산은 인쇄용 포인트(pt) 단위에서 <strong>4/3배 스케일업된 픽셀(px) 단위 값</strong>을 상속받게 되었습니다.
+            </p>
+            <p class="section-desc">
+                그 물리적 환산 결과, 종이 인쇄 서적의 절대적 기본값이었던 <strong>12pt 크기의 글씨는 웹 브라우저 상에서 소수점 없는 정수 영역인 16px과 수학적으로 완전히 같은 크기</strong>로 치환되어 렌더링됩니다. 이것이 오늘날 디자이너가 디자인 프레임을 짤 때 본문 텍스트의 최소 디폴트 표준 크기로 16px을 고정 선정해야 하는 명확한 원인입니다.
+            </p>
+
+            <div class="visual-demo">
+                <div class="demo-label"><i class="fa-solid fa-eye"></i> 인간공학 시청 거리에 따른 폰트 크기 보정 원리 (W3C CSS 가독성 매칭 공식)</div>
+                <div class="distance-canvas">
+                    
+                    <div class="distance-axis-row">
+                        <div class="eye-tracker"><i class="fa-solid fa-user-read"></i></div>
+                        <div class="distance-ray">
+                            <div class="distance-tag-badge">인쇄물 정석 시청 거리: 35 ~ 45 cm</div>
+                        </div>
+                        <div class="media-frame-target">
+                            <h5>물리 종이 서적</h5>
+                            <div class="font-render" style="font-size: 12px;">가독성 표준: 12 pt</div>
+                        </div>
+                    </div>
+
+                    <div class="distance-axis-row" style="margin-top:10px;">
+                        <div class="eye-tracker"><i class="fa-solid fa-laptop-medical"></i></div>
+                        <div class="distance-ray" style="background: linear-gradient(90deg, var(--primary-accent) 0%, var(--ms-color) 100%);">
+                            <div class="distance-tag-badge" style="background:var(--primary-accent)">모니터 시청 거리: 50 ~ 60 cm (4/3배 원격)</div>
+                        </div>
+                        <div class="media-frame-target" style="border-left-color: var(--ms-color);">
+                            <h5>디스플레이 웹 브라우저</h5>
+                            <div class="font-render" style="font-size: 16px; color:var(--primary-accent);">웹 표준 기본값: 16 px</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <i class="fa-solid fa-circle-info"></i> <strong>실무 컴포넌트 설계 시 주니어 디자이너를 위한 문단 팁</strong><br>
+                실무 가이드를 제작할 때 16px이 절대적 본문 규격이라고 해서 모든 화면 영역에 16px만 고집할 필요는 없습니다. 사용자의 시선이 집중되는 모바일 제품 리스트의 요약 설명문, 보조 안내 캡션, 인풋 박스의 플레이스홀더 등은 레이아웃의 공간 확보 및 시각적 계층 구조(Hierarchy) 형성을 위해 <strong>14px(Body Medium)</strong> 또는 <strong>12px(Caption)</strong> 단위로 압축하여 가독성의 강약을 유연하게 제어하는 것이 실무 전문가의 정석 설계 테크닉입니다.
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

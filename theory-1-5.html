@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Design Encyclopedia - 1-5. 반응형 그리드 시스템</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- 글로벌 디자인 시스템 변수 --- */
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --sidebar-width: 290px;
+            
+            /* 화이트 사이드바 테마 및 프라이머리 컬러 */
+            --sidebar-bg: #ffffff;
+            --primary: #1e293b;
+            --primary-accent: #4f46e5; 
+            --accent-light: #f0fdf4;
+            
+            /* 텍스트 및 경계선 */
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            
+            /* 상태 표시 피드백 */
+            --success: #16a34a;
+            --warning: #ca8a04;
+            --error: #dc2626;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- 1. 깔끔한 모던 화이트 사이드바 --- */
+        aside {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            color: var(--primary);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 24px 24px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+        }
+
+        .sidebar-brand i {
+            color: var(--primary-accent);
+        }
+
+        .sidebar-scroll-area {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding: 15px 12px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-bottom: 20px;
+        }
+
+        .menu-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            padding: 10px 12px 4px 12px;
+            font-weight: 700;
+        }
+
+        .menu-item a {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            color: #475569;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .menu-item a:hover {
+            background-color: #f1f5f9;
+            color: var(--primary-accent);
+        }
+
+        .menu-item.active a {
+            background-color: #e0e7ff;
+            color: var(--primary-accent);
+            font-weight: 700;
+        }
+
+        /* --- 2. 메인 본문 레이아웃 --- */
+        main {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 50px 80px;
+            max-width: 1200px;
+        }
+
+        header {
+            margin-bottom: 35px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        /* --- 3. 디자인 가이드 섹션 카드 --- */
+        .section-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .section-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-card h2 span {
+            font-size: 12px;
+            background: #e0e7ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--primary-accent);
+            font-weight: 600;
+        }
+
+        .section-desc {
+            font-size: 15px;
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .section-sub-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 28px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* --- 4. 시각화 및 가이드 요소 컴포넌트 --- */
+        .visual-demo {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .demo-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 유동형 컬럼 변화 모형 시각화 */
+        .responsive-simulation {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sim-row {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .sim-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .sim-grid-container {
+            display: grid;
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 6px;
+            gap: 8px;
+        }
+
+        .grid-4-cols { grid-template-columns: repeat(4, 1fr); }
+        .grid-8-cols { grid-template-columns: repeat(8, 1fr); }
+        .grid-12-cols { grid-template-columns: repeat(12, 1fr); }
+
+        .sim-col-unit {
+            height: 36px;
+            background: rgba(79, 70, 229, 0.15);
+            border: 1px solid var(--primary-accent);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--primary-accent);
+        }
+
+        /* 개발 코드 리뷰 창 시각화 */
+        .code-window {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 16px;
+            border-left: 4px solid var(--primary-accent);
+        }
+        .code-comment { color: #64748b; }
+        .code-keyword { color: #f472b6; }
+        .code-string { color: #38bdf8; }
+
+        /* 가이드라인 테이블 */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+            margin-top: 16px;
+            background: #fff;
+        }
+
+        .matrix-table th {
+            background-color: #f8fafc;
+            padding: 14px 12px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border-color);
+            color: var(--primary);
+            text-align: left;
+        }
+
+        .matrix-table td {
+            padding: 14px 12px;
+            border-bottom: 1px solid var(--border-color);
+            color: #334155;
+            line-height: 1.5;
+        }
+
+        .badge {
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            display: inline-block;
+        }
+        .badge-purple { background: #e0e7ff; color: var(--primary-accent); }
+
+        /* 알림 및 팁 박스 */
+        .tip-box {
+            background-color: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #78350f;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="sidebar-brand">
+            <i class="fa-solid fa-book-bookmark"></i> UI/UX Encyclopedia
+        </div>
+        
+        <div class="sidebar-scroll-area">
+            <div class="menu-title">A. 이론</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="index.html">1-1. 해상도와 레스터화</a></li>
+                <li class="menu-item"><a href="theory-1-2.html">1-2. 해상도 종류</a></li>
+                <li class="menu-item"><a href="theory-1-3.html">1-3. 해상도에 따른 배율디자인</a></li>
+                <li class="menu-item"><a href="theory-1-4.html">1-4. 그리드시스템</a></li>
+                <li class="menu-item active"><a href="theory-1-5.html">1-5. 반응형 그리드 시스템</a></li>
+                <li class="menu-item"><a href="theory-1-6.html">1-6. 간격 시스템</a></li>
+            </ul>
+
+            <div class="menu-title">B. 타이포그래피</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="typo-2-1.html">2-1. 폰트 단위</a></li>
+                <li class="menu-item"><a href="typo-2-2.html">2-2. 문단 크기 선정기준</a></li>
+                <li class="menu-item"><a href="typo-2-3.html">2-3. 폰트크기 및 두께</a></li>
+                <li class="menu-item"><a href="typo-2-4.html">2-4. 폰트 컬러</a></li>
+                <li class="menu-item"><a href="typo-2-5.html">2-5. 폰트행간</a></li>
+                <li class="menu-item"><a href="typo-2-6.html">2-6. 글자길이와 줄바꿈 기준</a></li>
+                <li class="menu-item"><a href="typo-2-7.html">2-7. 한글과 영문 조합</a></li>
+            </ul>
+
+            <div class="menu-title">C. 컬러</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="color-3-1.html">3-1. 브랜드 컬러</a></li>
+                <li class="menu-item"><a href="color-3-2.html">3-2. 그레이스케일</a></li>
+                <li class="menu-item"><a href="color-3-3.html">3-3. 시스템 컬러</a></li>
+                <li class="menu-item"><a href="color-3-4.html">3-4. 컬러 사용과 용도</a></li>
+                <li class="menu-item"><a href="color-3-5.html">3-5. 컬러 적용시 주의점</a></li>
+            </ul>
+
+            <div class="menu-title">D. 컴포넌트</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="components.html">드롭다운 / 인풋 등</a></li>
+            </ul>
+
+            <div class="menu-title">E. 인터랙션</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="interactions.html">상태별 피드백 규칙</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main>
+        <header>
+            <h1>A. 이론 (Theory Base)</h1>
+            <p>다양한 기기 스크린 크기와 환경 변화에 맞춰 인터페이스 구조를 유동적으로 리밸런싱하는 반응형 그리드 설계 방식입니다.</p>
+        </header>
+
+        <section id="sec-1-5" class="section-card">
+            <h2><span>1-5</span> 반응형 그리드 시스템</h2>
+            
+            <p class="section-desc">
+                <strong>반응형 그리드 시스템이란?</strong><br>
+                최근에는 디바이스 환경에 따라 다양한 해상도가 등장하면서 여러 크기의 화면을 유연하게 지원하는 반응형 그리드 시스템이 필수적으로 자리 잡았습니다. 과거 고정(Fixed) 그리드 시스템과 외형적 형태는 비슷하지만, 칼럼의 너비를 고정 픽셀(px) 값이 아닌 <strong>백분율(Percentage %)의 유동적인 값</strong>으로 지정하고, 디바이스 군에 따라 <strong>'브레이크 포인트(Breakpoints)'</strong>를 설정하여 화면 크기와 방향에 맞춰 레이아웃을 동적으로 조정합니다.
+            </p>
+
+            <h3 class="section-sub-title"><i class="fa-solid fa-expand-arrows-alt"></i> 브레이크 포인트 (Breakpoint)의 개념</h3>
+            <p class="section-desc">
+                브레이크 포인트는 특정 레이아웃 요구사항과 화면 변환이 강제로 일어나도록 미리 결정해 둔 <strong>화면 가로 크기의 임계 범위</strong>입니다. 각 브레이크 포인트 범위는 디스플레이 크기에 맞추어 가장 최적화된 칼럼의 총 개수와 권장 마진(Margin) 및 거터(Gutter) 폭의 균형을 결정합니다.
+            </p>
+
+            <div class="visual-demo">
+                <div class="demo-label"><i class="fa-solid fa-shuffle"></i> 해상도 변화에 따른 실무 칼럼 수 축소 변환 규칙 시뮬레이션</div>
+                <div class="responsive-simulation">
+                    
+                    <div class="sim-row">
+                        <div class="sim-header"><span><i class="fa-solid fa-display"></i> 데스크톱 (Desktop / Laptop)</span><span class="badge badge-purple">12 Columns</span></div>
+                        <div class="sim-grid-container grid-12-cols">
+                            <div class="sim-col-unit">1</div><div class="sim-col-unit">2</div><div class="sim-col-unit">3</div><div class="sim-col-unit">4</div>
+                            <div class="sim-col-unit">5</div><div class="sim-col-unit">6</div><div class="sim-col-unit">7</div><div class="sim-col-unit">8</div>
+                            <div class="sim-col-unit">9</div><div class="sim-col-unit">10</div><div class="sim-col-unit">11</div><div class="sim-col-unit">12</div>
+                        </div>
+                    </div>
+
+                    <div class="sim-row">
+                        <div class="sim-header"><span><i class="fa-solid fa-tablet-screen-button"></i> 태블릿 (Tablet)</span><span class="badge badge-purple" style="background:#cbd5e1; color:#334155;">8 Columns</span></div>
+                        <div class="sim-grid-container grid-8-cols">
+                            <div class="sim-col-unit">1</div><div class="sim-col-unit">2</div><div class="sim-col-unit">3</div><div class="sim-col-unit">4</div>
+                            <div class="sim-col-unit">5</div><div class="sim-col-unit">6</div><div class="sim-col-unit">7</div><div class="sim-col-unit">8</div>
+                        </div>
+                    </div>
+
+                    <div class="sim-row">
+                        <div class="sim-header"><span><i class="fa-solid fa-mobile-screen"></i> 모바일 (Mobile)</span><span class="badge badge-purple" style="background:#fecdd3; color:#9f1239;">4 Columns</span></div>
+                        <div class="sim-grid-container grid-4-cols">
+                            <div class="sim-col-unit">1</div><div class="sim-col-unit">2</div><div class="sim-col-unit">3</div><div class="sim-col-unit">4</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <h3 class="section-sub-title"><i class="fa-solid fa-gears"></i> 실무 브레이크 포인트 지정 방법 3가지</h3>
+            <p class="section-desc">
+                <strong>1. 통계적 데이터 분석 검사:</strong> 타겟 사용자의 실제 해상도 점유율을 구글 애널리틱스(GA4) 등의 통계적인 수치로 검사하여 가장 점유율이 높은 해상도 구간을 주 타겟 브레이크포인트로 선택하여 제작하거나, 일정 비율 이하(예: 1% 미만)의 지나치게 낡고 낮은 해상도는 타겟에서 조율 배제하여 생산성을 높입니다.<br>
+                <br>
+                <strong>2. 퍼블리싱 미디어 쿼리 연동:</strong> 웹사이트 프론트엔드 개발자는 CSS 코드 내부의 <strong>미디어 쿼리(Media Query)</strong> 문법을 이용해 디자이너가 설계한 각 브레이크 포인트 구간을 정밀하게 연산하여 분기 코딩을 제작합니다. 아래는 디자이너가 반드시 이해하고 있어야 하는 실제 개발단의 소통 언어 형태입니다.
+            </p>
+
+            <div class="code-window">
+                <span class="code-comment">/* 개발자가 레이아웃 분기점을 나누는 실제 미디어 쿼리 코드 양식 예시 */</span><br>
+                <span class="code-keyword">@media</span> (max-width: <span class="code-string">768px</span>) { <br>
+                &nbsp;&nbsp;<span class="code-comment">/* 모바일 브레이크포인트: 화면 가로가 768px 이하로 떨어지면 4컬럼 배열로 강제 전환 */</span><br>
+                &nbsp;&nbsp;.content-card { width: <span class="code-string">100%</span>; }<br>
+                }<br>
+                <span class="code-keyword">@media</span> (min-width: <span class="code-string">769px</span>) and (max-width: <span class="code-string">1200px</span>) { <br>
+                &nbsp;&nbsp;<span class="code-comment">/* 태블릿 브레이크포인트: 2열 정렬 그리드로 격자 변경 */</span><br>
+                &nbsp;&nbsp;.content-card { width: <span class="code-string">50%</span>; }<br>
+                }
+            </div>
+
+            <p class="section-desc" style="margin-top:20px;">
+                <strong>3. 시안 제작의 최소화 원칙:</strong> 실무 디자인 작업 시 수많은 기기 스크린을 전부 그릴 수 없으므로, 기본적으로 <strong>모바일, 태블릿, 데스크톱의 3대 대표 경우</strong>의 수로만 시안 프레임을 압축하여 최소한으로 작업합니다. 디자이너는 브레이크 포인트 전환 시 마다 컬럼 너비뿐만 아니라 타이포그래피 행간이나 컴포넌트 사이의 간격 조정(여백 압축)이 동반됨을 미리 인지하고 설계해야 완성도가 상승합니다.
+            </p>
+
+            <h3 class="section-sub-title"><i class="fa-solid fa-list-check"></i> 주요 디바이스 표준 브레이크 포인트 그리드 예시</h3>
+            <p class="section-desc">
+                반응형 시스템 구조 설계 시 칼럼 수와 거터, 마진은 기획 의도에 따라 변하는 유연한 값이며 모든 기기 환경에서 무조건 동일할 필요는 없습니다. 아래 매트릭스는 업계 공통 표준 그리드 프리셋 세팅입니다.
+            </p>
+
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th>디바이스 환경 분류</th>
+                        <th>브레이크포인트 경계면</th>
+                        <th>추천 칼럼 수</th>
+                        <th>권장 거터(Gutter) 및 마진(Margin)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>모바일 (Mobile / Fold형 접힘)</strong></td>
+                        <td>0px ~ 599px</td>
+                        <td><span class="badge badge-purple">4 Column</span></td>
+                        <td>Gutter: 8px 또는 12px / Margin: 16px 고정</td>
+                    </tr>
+                    <tr>
+                        <td><strong>태블릿 (Tablet / Z폴드 펼침)</strong></td>
+                        <td>600px ~ 1023px</td>
+                        <td><span class="badge badge-purple" style="background:#cbd5e1; color:#334155;">8 Column</span></td>
+                        <td>Gutter: 16px / Margin: 24px 또는 32px 유동</td>
+                    </tr>
+                    <tr>
+                        <td><strong>데스크톱 (PC Desktop / Laptop)</strong></td>
+                        <td>1024px 이상 ~</td>
+                        <td><span class="badge badge-purple" style="background:#1e293b; color:#fff;">12 Column</span></td>
+                        <td>Gutter: 24px (또는 16px) / Margin: Safe Area 외부 무제한 확장</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <i class="fa-solid fa-lightbulb"></i> <strong>주니어 디자이너를 위한 반응형 설계 핵심 꿀팁</strong><br>
+                반응형 디자인을 진행할 때는 글자 수가 긴 타이틀 배치를 특히 유의해야 합니다. 데스크톱 12컬럼 가로 한 줄에 넓게 깔리던 텍스트 문장이 모바일 4컬럼 범위로 압축되면 자동으로 3~4줄 이상 아래로 길게 밀려 컴포넌트 영역을 터뜨리게 됩니다. 시안을 그릴 때 모바일 뷰 프레임에서 제목 글줄이 어떻게 흐르는지(줄바꿈), 그리고 해상도가 아주 좁아질 때 거터 간격을 유연하게 축소 배정할 것인지 미리 고민해 두는 습관이 최고급 전문가로 향하는 지름길입니다.
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

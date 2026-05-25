@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Design Encyclopedia - 3-3. 시스템 컬러</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- 글로벌 디자인 시스템 변수 --- */
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --sidebar-width: 290px;
+            --sidebar-bg: #ffffff;
+            --primary: #1e293b;
+            --primary-accent: #4f46e5;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+
+            /* --- 시스템 컬러 정의 (이미지 데이터 반영) --- */
+            --sys-red: #d32f2f;
+            --sys-yellow: #f9a825;
+            --sys-green: #4caf50;
+            --sys-blue: #0091ea;
+            
+            --sys-red-bg: #fef2f2;
+            --sys-yellow-bg: #fffbeb;
+            --sys-green-bg: #f0fdf4;
+            --sys-blue-bg: #eff6ff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- 사이드바 (기존 시스템 계승) --- */
+        aside {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            position: fixed;
+            top: 0; bottom: 0; left: 0;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 24px;
+            font-size: 16px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-brand i { color: var(--primary-accent); }
+
+        .sidebar-scroll-area { padding: 15px 12px; overflow-y: auto; flex-grow: 1; }
+
+        .menu-title { font-size: 11px; text-transform: uppercase; color: #94a3b8; padding: 10px 12px 4px; font-weight: 700; }
+
+        .sidebar-menu { 
+    list-style: none; 
+    display: flex;          /* Flexbox 활성화 */
+    flex-direction: column; /* 세로 정렬 */
+    gap: 2px;               /* 아이템 사이의 간격 지정 */
+    margin-bottom: 20px; 
+}
+
+        .menu-item a {
+            display: flex; align-items: center; padding: 8px 12px; color: #475569;
+            text-decoration: none; font-size: 13px; font-weight: 500; border-radius: 6px;
+        }
+
+        .menu-item.active a { background-color: #e0e7ff; color: var(--primary-accent); font-weight: 700; }
+
+        /* --- 메인 콘텐츠 레이아웃 --- */
+        main { margin-left: var(--sidebar-width); flex-grow: 1; padding: 50px 80px; max-width: 1200px; }
+
+        header { margin-bottom: 35px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+
+        header h1 { font-size: 26px; font-weight: 700; color: var(--primary); }
+
+        .section-card { background-color: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); padding: 40px; margin-bottom: 32px; }
+
+        .section-card h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+
+        .section-card h2 span { font-size: 12px; background: #e0e7ff; padding: 2px 8px; border-radius: 4px; color: var(--primary-accent); }
+
+        .section-desc { font-size: 15px; color: #334155; line-height: 1.8; margin-bottom: 24px; }
+
+        .section-sub-title { font-size: 16px; font-weight: 700; color: var(--primary); margin-top: 35px; margin-bottom: 14px; }
+
+        /* --- 시각화 컴포넌트 --- */
+        .visual-demo { background-color: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 24px; margin: 20px 0; }
+
+        .demo-label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 16px; }
+
+        /* 1. 시스템 컬러 칩 레이아웃 */
+        .system-color-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+
+        .color-chip { border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); background: white; }
+
+        .chip-top { height: 120px; padding: 15px; color: white; display: flex; flex-direction: column; justify-content: space-between; }
+
+        .chip-top h4 { font-size: 18px; font-weight: 700; }
+
+        .chip-info { padding: 12px; }
+
+        .chip-info .hex { font-family: 'JetBrains Mono'; font-size: 12px; font-weight: 600; color: var(--primary); }
+
+        .chip-info .tags { font-size: 11px; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
+
+        /* 2. 모양과 상징 레이아웃 */
+        .symbol-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; margin-top: 20px; }
+
+        .symbol-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+        .symbol-shape { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+
+        .shape-circle { border: 2px solid #bdbdbd; border-radius: 50%; }
+
+        .shape-triangle { position: relative; color: #bdbdbd; font-size: 40px; }
+
+        .symbol-label { font-size: 13px; font-weight: 700; color: #64748b; }
+
+        /* 3. 인풋 필드 상태 예시 */
+        .input-status-stack { display: flex; flex-direction: column; gap: 20px; }
+
+        .input-group { position: relative; }
+
+        .input-label { font-size: 12px; font-weight: 700; margin-bottom: 6px; display: block; }
+
+        .input-wrapper { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px 14px; background: white; }
+
+        .input-wrapper input { border: none; flex-grow: 1; outline: none; font-size: 14px; }
+
+        .input-wrapper i { color: #94a3b8; }
+
+        .helper-text { font-size: 12px; margin-top: 6px; display: flex; align-items: center; gap: 5px; font-weight: 500; }
+
+        /* 상태별 클래스 */
+        .status-red .input-wrapper { border-color: var(--sys-red); }
+        .status-red .helper-text { color: var(--sys-red); }
+        .status-red .input-label { color: var(--sys-red); }
+
+        .status-yellow .input-wrapper { border-color: var(--sys-yellow); }
+        .status-yellow .helper-text { color: var(--sys-yellow); }
+        .status-yellow .input-label { color: var(--sys-yellow); }
+
+        .status-green .input-wrapper { border-color: var(--sys-green); }
+        .status-green .helper-text { color: var(--sys-green); }
+        .status-green .input-label { color: var(--sys-green); }
+
+        .status-blue .input-wrapper { border-color: var(--sys-blue); }
+        .status-blue .helper-text { color: var(--sys-blue); }
+        .status-blue .input-label { color: var(--sys-blue); }
+
+        /* 4. DO & DON'T 레이아웃 */
+        .do-dont-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+        .mockup-box { border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; text-align: center; background: white; }
+
+        .mockup-tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 800; margin-bottom: 20px; }
+
+        .mockup-tag.do { background: #f0fdf4; color: var(--sys-green); border: 1px solid #bcf0da; }
+
+        .mockup-tag.dont { background: #fef2f2; color: var(--sys-red); border: 1px solid #fecaca; }
+
+        .error-page-preview { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+
+        .error-icon { font-size: 48px; margin-bottom: 10px; }
+
+        .error-title { font-size: 18px; font-weight: 800; }
+
+        .error-msg { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
+
+        .btn { padding: 10px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-color); background: white; }
+
+        .btn-primary { background: var(--primary-accent); color: white; border: none; }
+
+        .tip-box { background-color: #f0fdf4; border-left: 4px solid var(--sys-green); padding: 16px; border-radius: 0 8px 8px 0; margin-top: 24px; font-size: 14px; color: #166534; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="sidebar-brand">
+            <i class="fa-solid fa-book-bookmark"></i> UI/UX Encyclopedia
+        </div>
+        
+        <div class="sidebar-scroll-area">
+            <div class="menu-title">A. 이론</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="index.html">1-1. 해상도와 레스터화</a></li>
+                <li class="menu-item"><a href="theory-1-2.html">1-2. 해상도 종류</a></li>
+                <li class="menu-item"><a href="theory-1-3.html">1-3. 해상도에 따른 배율디자인</a></li>
+                <li class="menu-item"><a href="theory-1-4.html">1-4. 그리드시스템</a></li>
+                <li class="menu-item"><a href="theory-1-5.html">1-5. 반응형 그리드 시스템</a></li>
+                <li class="menu-item"><a href="theory-1-6.html">1-6. 간격 시스템</a></li>
+            </ul>
+
+            <div class="menu-title">B. 타이포그래피</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="typo-2-1.html">2-1. 폰트 단위</a></li>
+                <li class="menu-item"><a href="typo-2-2.html">2-2. 문단 크기 선정기준</a></li>
+                <li class="menu-item"><a href="typo-2-3.html">2-3. 폰트크기 및 두께</a></li>
+                <li class="menu-item"><a href="typo-2-4.html">2-4. 폰트 컬러</a></li>
+                <li class="menu-item"><a href="typo-2-5.html">2-5. 폰트행간</a></li>
+                <li class="menu-item"><a href="typo-2-6.html">2-6. 글자길이와 줄바꿈 기준</a></li>
+                <li class="menu-item"><a href="typo-2-7.html">2-7. 한글과 영문 조합</a></li>
+            </ul>
+
+            <div class="menu-title">C. 컬러</div>
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="color-3-1.html">3-1. 브랜드 컬러</a></li>
+                <li class="menu-item"><a href="color-3-2.html">3-2. 그레이스케일</a></li>
+                <li class="menu-item active"><a href="color-3-3.html">3-3. 시스템 컬러</a></li>
+                <li class="menu-item"><a href="color-3-4.html">3-4. 컬러 사용과 용도</a></li>
+                <li class="menu-item"><a href="color-3-5.html">3-5. 컬러 적용시 주의점</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main>
+        <header>
+            <h1>C. 컬러 (Color System)</h1>
+            <p>사용자에게 시스템의 상태를 직관적으로 전달하고, 조작 결과에 대한 피드백을 제공하는 시스템 컬러 정의 및 접근성 가이드를 정의합니다.</p>
+        </header>
+
+        <section id="sec-3-3" class="section-card">
+            <h2><span>3-3</span> 시스템 컬러 가이드라인 (System Color Guidelines)</h2>
+            
+            <p class="section-desc">
+                시스템 컬러는 상태의 의미를 전달하는 컬러로 사용자에게 직관적으로 시스템의 상태를 알려주는데 효과적입니다. 
+                단순히 미적인 요소를 넘어, 성공, 경고, 오류 등의 정보를 전달하여 사용자가 다음 행동을 결정하는 데 중요한 근거가 됩니다.
+            </p>
+
+            <div class="visual-demo">
+                <div class="demo-label"><i class="fa-solid fa-palette"></i> 상태 의미별 시스템 컬러 팔레트</div>
+                <div class="system-color-grid">
+                    <div class="color-chip">
+                        <div class="chip-top" style="background-color: var(--sys-red);"><h4>Red</h4><i class="fa-solid fa-circle-exclamation"></i></div>
+                        <div class="chip-info"><span class="hex">#d32f2f</span><p class="tags">오류, 금지, 정지, 삭제, 필수</p></div>
+                    </div>
+                    <div class="color-chip">
+                        <div class="chip-top" style="background-color: var(--sys-yellow);"><h4>Yellow</h4><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="chip-info"><span class="hex">#f9a825</span><p class="tags">주의, 경고, 대기 중</p></div>
+                    </div>
+                    <div class="color-chip">
+                        <div class="chip-top" style="background-color: var(--sys-green);"><h4>Green</h4><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="chip-info"><span class="hex">#4caf50</span><p class="tags">성공, 완료, 안전, 진행</p></div>
+                    </div>
+                    <div class="color-chip">
+                        <div class="chip-top" style="background-color: var(--sys-blue);"><h4>Blue</h4><i class="fa-solid fa-circle-info"></i></div>
+                        <div class="chip-info"><span class="hex">#0091ea</span><p class="tags">정보, 도움말, 링크, 활성화</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-sub-title"><i class="fa-solid fa-shapes"></i> 컬러와 모양의 상징적 결합 (Web Accessibility)</h3>
+            <p class="section-desc">
+                웹 접근성 지침에 따르면 색상만으로 의미를 전달해서는 안 됩니다. 색맹이나 저시력 사용자를 위해 <strong>아이콘(모양)과 텍스트를 함께 기재</strong>하는 것을 권장합니다. 비엔나 협정에 따른 국제 표준 모양을 사용하면 더욱 직관적입니다.
+            </p>
+
+            <div class="visual-demo">
+                <div class="demo-label">모양과 색상의 조합 가이드</div>
+                <div class="symbol-grid">
+                    <div class="symbol-item"><div class="symbol-shape shape-circle" style="border-color: var(--sys-red); color: var(--sys-red);"><i class="fa-solid fa-ban"></i></div><span class="symbol-label">금지, 불가</span></div>
+                    <div class="symbol-item"><div class="symbol-shape" style="color: var(--sys-yellow); font-size: 50px;"><i class="fa-solid fa-triangle-exclamation"></i></div><span class="symbol-label">주의, 경고</span></div>
+                    <div class="symbol-item"><div class="symbol-shape shape-circle" style="border-color: var(--sys-green); color: var(--sys-green);"><i class="fa-solid fa-check"></i></div><span class="symbol-label">성공, 확인</span></div>
+                    <div class="symbol-item"><div class="symbol-shape shape-circle" style="border-color: var(--sys-blue); color: var(--sys-blue);"><i class="fa-solid fa-info"></i></div><span class="symbol-label">정보, 안내</span></div>
+                </div>
+            </div>
+
+            <h3 class="section-sub-title"><i class="fa-solid fa-keyboard"></i> 실무 적용 예시: 인풋 필드 유효성 검사</h3>
+            <div class="visual-demo">
+                <div class="input-status-stack">
+                    <div class="input-group status-red">
+                        <label class="input-label">RED - 사용불가, 위험</label>
+                        <div class="input-wrapper"><input type="password" value="123456"><i class="fa-regular fa-eye-slash"></i></div>
+                        <p class="helper-text"><i class="fa-solid fa-circle-exclamation"></i> 적합하지 않은 비밀번호입니다. 다시 입력해주세요.</p>
+                    </div>
+                    <div class="input-group status-yellow">
+                        <label class="input-label">YELLOW - 경고, 주의</label>
+                        <div class="input-wrapper"><input type="password" value="qwerty1234"><i class="fa-regular fa-eye-slash"></i></div>
+                        <p class="helper-text"><i class="fa-solid fa-triangle-exclamation"></i> 보안이 낮은 비밀번호입니다. (중간)</p>
+                    </div>
+                    <div class="input-group status-green">
+                        <label class="input-label">GREEN - 성공</label>
+                        <div class="input-wrapper"><input type="password" value="A!s2D#f4G%h6"><i class="fa-regular fa-eye-slash"></i></div>
+                        <p class="helper-text"><i class="fa-solid fa-circle-check"></i> 보안이 높은 비밀번호입니다. (안전)</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-sub-title"><i class="fa-solid fa-circle-exclamation"></i> 404 오류 페이지 적용 가이드 (DO & DON'T)</h3>
+            <p class="section-desc">
+                404 오류는 페이지를 실행할 수 없는 '실행 불가' 상태이므로 주의(Yellow Triangle)가 아닌 <strong>오류(Red Circle)</strong> 아이콘 사용을 강력히 권장합니다.
+            </p>
+
+            <div class="do-dont-container">
+                <div class="mockup-box">
+                    <span class="mockup-tag do">DO</span>
+                    <div class="error-page-preview">
+                        <div class="error-icon" style="color: var(--sys-red);"><i class="fa-solid fa-circle-exclamation"></i></div>
+                        <h4 class="error-title">404 ERROR</h4>
+                        <p class="error-msg">요청하신 페이지를 찾을 수 없습니다.<br>입력한 주소가 정확한지 확인해주세요.</p>
+                        <div class="btn-group"><button class="btn btn-primary">홈으로 이동</button><button class="btn">지원팀 문의</button></div>
+                    </div>
+                </div>
+                <div class="mockup-box">
+                    <span class="mockup-tag dont">DON'T</span>
+                    <div class="error-page-preview">
+                        <div class="error-icon" style="color: var(--sys-yellow);"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <h4 class="error-title">404 ERROR</h4>
+                        <p class="error-msg">요청하신 페이지를 찾을 수 없습니다.<br>경고 아이콘은 의미에 부합하지 않습니다.</p>
+                        <div class="btn-group"><button class="btn btn-primary">홈으로 이동</button><button class="btn">지원팀 문의</button></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <i class="fa-solid fa-lightbulb"></i> <strong>디자인 팁:</strong> 시스템 컬러를 사용할 때는 배경색에 따라 명도 대비를 조절해야 합니다. 또한, 색상에만 의존하지 않고 명확한 텍스트 문구(Helper Text)를 병기하여 보편적인 사용성을 확보하는 것이 중요합니다.
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
